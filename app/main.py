@@ -42,7 +42,7 @@ async def get_cities(city_names: Optional[str] = None, api_key: APIKey = Depends
     Returns all the cities from the database
 
     :param api_key: API Key \n
-    :param city_names: Name of the city (optional) \n
+    :param city_names: Name of the city (optional), needs to be separated by comma (,) \n
     :return: cities records from database \n
     """
     cities_operations = CitiesOperations()

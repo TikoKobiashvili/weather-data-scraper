@@ -14,11 +14,13 @@ This project is a FastAPI-based application for scraping weather data from the O
 - **API Endpoints**:
   - Fetch weather data.
   - Download the CSV file.
+  - Visualize processed weather data.
 - **Dockerized**: Easily deployable using Docker.
 
 ## Requirements
 - Python 3.9+
 - Docker
+- Other requirements can be seen in requirements.txt
 
 ## Technologies Used
 - **FastAPI**: Web framework for building the API.
@@ -40,6 +42,10 @@ cd weather-data-scraper
 ```bash
 python -m venv <virtual-environment-name>
 ```
+#### Activate virtual environment
+```bash
+source <virtual-environment-name>/bin/activate
+```
 
 ### 3. Install Dependencies
 ```bash
@@ -57,7 +63,7 @@ Copy the contents of `.env.sample`:
 cp .env.sample .env
 ```
 
-### 5. Run the Application Using Docker (Optional)
+### 5. Run the Application Using Docker
 
 Build and run the app using Docker:
 ```bash
@@ -65,26 +71,33 @@ docker-compose up --build
 ```
 The app will be available at http://localhost:8000.
 
+### 6. Run tests
 
-### 6. API Endpoints
+```bash
+docker-compose run --no-deps app bash -c "coverage run -m pytest app; coverage report -m; coverage html; coverage xml"
+```
+
+### 7. API Endpoints
+#### API Key - secret
+
 - **Access Swagger UI**: `http://localhost:8000/docs#/`
   - Displays available endpoints.
 - **Fetch cities**: `GET /cities`
   - Retrieves all cities from the database.
-  - Retrieves one city based on the name specified in params.
+  - Retrieves list of cities based on the names specified in params. Names should be separated by comma (,)
 - **Add City**: `POST /cities`
-  - Adds a new city to the database. You need to provide a name.
+  - Adds a new city/cities to the database. You need to provide a name(s).
 - **Fetch Weather Data**: `GET /weather`
   - Returns processed weather data for the cities in JSON format.
-  - Returns processed weather data for one city based on the name specified in params.
+  - Returns processed weather data for list of cities based on the names specified in params. (names should be separated by comma (,))
   - Returns processed weather data for quantity of cities, specified in params.
 - **Download CSV**: `GET /download-csv`
   - Provides the processed weather data for all the cities, as a downloadable CSV file.
-  - Provides the processed weather data for one city based on the name specified in params, as a downloadable CSV file.
+  - Provides the processed weather data for list cities based on the names specified in params, as a downloadable CSV file.(names should be separated by comma (,))
   - Provides the processed weather data for quantity of cities, specified in params, as a downloadable CSV file.
 - **Visualize process data**: `GET /download-csv`
   - Provides the processed weather data visualization for all the cities, as an image.
-  - Provides the processed weather data visualization for one city based on the name specified in params, as an image.
+  - Provides the processed weather data visualization for list cities based on the names specified in params, as an image.(names should be separated by comma (,))
   - Provides the processed weather data visualization for quantity of cities, specified in params, as an image.
 
 

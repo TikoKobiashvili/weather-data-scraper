@@ -95,7 +95,7 @@ docker-compose run --no-deps app bash -c "coverage run -m pytest app; coverage r
   - Provides the processed weather data for all the cities, as a downloadable CSV file.
   - Provides the processed weather data for list cities based on the names specified in params, as a downloadable CSV file.(names should be separated by comma (,))
   - Provides the processed weather data for quantity of cities, specified in params, as a downloadable CSV file.
-- **Visualize process data**: `GET /download-csv`
+- **Visualize process data**: `GET /weather-visualization`
   - Provides the processed weather data visualization for all the cities, as an image.
   - Provides the processed weather data visualization for list cities based on the names specified in params, as an image.(names should be separated by comma (,))
   - Provides the processed weather data visualization for quantity of cities, specified in params, as an image.
